@@ -8,8 +8,8 @@ final encrypter =
     encrypt.Encrypter(encrypt.AES(key, mode: encrypt.AESMode.cbc));
 
 sendmainActualizarContrasema(codigo, username_person, correo_persona) async {
-  String username = 'arguellocalle@gmail.com';
-  String password = 'mariohack16';
+  String username = 'mariopruebacode@gmail.com';
+  String password = 'prueba123';
 
   final smtpServer = gmail(username, password);
   final decrypted_code = encrypter.decrypt(codigo, iv: iv);
