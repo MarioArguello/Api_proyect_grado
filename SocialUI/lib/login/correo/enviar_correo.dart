@@ -7,8 +7,8 @@ final iv = encrypt.IV.fromLength(16);
 final encrypter =
     encrypt.Encrypter(encrypt.AES(key, mode: encrypt.AESMode.cbc));
 sendmain(codigo, correo_persona) async {
-  String username = 'arguellocalle@gmail.com';
-  String password = 'mariohack16';
+  String username = 'mariopruebacode@gmail.com';
+  String password = 'prueba123';
   // conditions for validating
   final decrypted_code = encrypter.decrypt(codigo, iv: iv);
   print("codigo : " + decrypted_code);
