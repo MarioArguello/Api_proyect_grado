@@ -8,6 +8,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:socialui/login/LoginScreen.dart';
 import 'package:socialui/login/correo/correo_verificar.dart';
+import 'package:socialui/enviorement/enviroment.dart';
 
 class RegistrationScreen extends StatefulWidget {
   final String? correo;
@@ -384,8 +385,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   void togglePasswordVisibility() => setState(() => isHidden = !isHidden);
 
   Registro_api(dni, correo, telefono, fecha) async {
-    var url = Uri.parse(
-        'http://192.168.56.1:4000/proceso/validarPersona/$dni/$telefono');
+    var url =
+        Uri.parse('${Enviroment.Api_url}proceso/validarPersona/$dni/$telefono');
     print(url);
     // Await the http get response, then decode the json-formatted response.
     var response = await http.get(url);
@@ -404,7 +405,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         cedulaRegistro.clear();
       } else {
         var url = Uri.parse(
-            'http://192.168.56.1:4000/proceso/persona__usuario_crear/create');
+            '${Enviroment.Api_url}proceso/persona__usuario_crear/create');
         print(url);
         Map data = {
           'username': usernameRegistro.text,

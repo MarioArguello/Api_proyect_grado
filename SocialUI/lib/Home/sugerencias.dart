@@ -5,6 +5,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:socialui/Home/TweetSerializer/persona_random.dart';
 import 'package:socialui/Profile/otherProfileScreen.dart';
+import 'package:socialui/enviorement/enviroment.dart';
 
 class sugerenciasScreen extends StatefulWidget {
   const sugerenciasScreen(
@@ -18,8 +19,7 @@ class sugerenciasScreen extends StatefulWidget {
 
 Future<List<personaRandom>> getDataHisorial() async {
   http.Response response = await http.get(
-      Uri.parse(
-          'http://192.168.56.1:4000/proceso/invitarpersona/getaAll'), //url
+      Uri.parse('${Enviroment.Api_url}proceso/invitarpersona/getaAll'), //url
       headers: {"Accept": "application/json"});
   return await Future.delayed(Duration(seconds: 2), () {
     List<dynamic> data = convert.jsonDecode(response.body);

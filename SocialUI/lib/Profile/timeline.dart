@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:socialui/Profile/editarTweet.dart';
+import 'package:socialui/enviorement/enviroment.dart';
 
 class TimeLineScreen extends StatefulWidget {
   const TimeLineScreen({key, required this.idperson}) : super(key: key);
@@ -28,7 +29,7 @@ class _TimeLineScreenState extends State<TimeLineScreen> {
     print(idusuario_.toString());
     http.Response response = await http.get(
         Uri.parse(
-            'http://192.168.56.1:4000/proceso/tweet_persona/$idusuario_'), //url
+            '${Enviroment.Api_url}proceso/tweet_persona/$idusuario_'), //url
         headers: {"Accept": "application/json"});
     return await Future.delayed(Duration(seconds: 2), () {
       List<dynamic> data = convert.jsonDecode(response.body);
@@ -397,7 +398,7 @@ class _TimeLineScreenState extends State<TimeLineScreen> {
 
   Like_validacion(id_person, idtweet) async {
     var url = Uri.parse(
-        'http://192.168.56.1:4000/proceso/filtrodeLike/$id_person/$idtweet');
+        '${Enviroment.Api_url}proceso/filtrodeLike/$id_person/$idtweet');
     print(url);
     var response = await http.get(url);
     if (response.statusCode == 200) {
@@ -407,7 +408,7 @@ class _TimeLineScreenState extends State<TimeLineScreen> {
       var idlike = jsonResponse['idlike'];
       bool validar_like = jsonResponse['validar_like'];
       if (msg_existente == '1' && validar_like == true) {
-        var url3 = Uri.parse('http://192.168.56.1:4000/like/delete/$idlike');
+        var url3 = Uri.parse('${Enviroment.Api_url}like/delete/$idlike');
         Map data2 = {
           'like_verificar': false,
         };
@@ -426,7 +427,7 @@ class _TimeLineScreenState extends State<TimeLineScreen> {
           print('Falla al conectar al API REST: ${response.statusCode}.');
         }
       } else if (msg_existente == '2' && validar_like == false) {
-        var url4 = Uri.parse('http://192.168.56.1:4000/like/create');
+        var url4 = Uri.parse('${Enviroment.Api_url}like/create');
         Map data4 = {
           "idtweet": idtweet,
           "idpersona": id_person,
@@ -451,7 +452,7 @@ class _TimeLineScreenState extends State<TimeLineScreen> {
   }
 
   elimar_tweet(idtweet_) async {
-    var url4 = Uri.parse('http://192.168.56.1:4000/tweet/update/$idtweet_');
+    var url4 = Uri.parse('${Enviroment.Api_url}tweet/update/$idtweet_');
     Map data4 = {
       "estado": "E",
     };

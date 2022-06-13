@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:socialui/Profile/Profile.dart';
+import 'package:socialui/enviorement/enviroment.dart';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'validar_insulto.dart';
@@ -116,7 +116,7 @@ class _EditarTweetScreen extends State<EditarTweetScreen> {
   }
 
   editar_tweet(contenido, idtweet_) async {
-    var url4 = Uri.parse('http://192.168.56.1:4000/tweet/update/$idtweet_');
+    var url4 = Uri.parse('${Enviroment.Api_url}tweet/update/$idtweet_');
     Map data4 = {
       "contenido": contenido,
     };

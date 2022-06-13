@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:socialui/enviorement/enviroment.dart';
 
 class OtheProfileScreen extends StatefulWidget {
   final String name;
@@ -34,7 +35,7 @@ class _OtheProfileScreenState extends State<OtheProfileScreen> {
 
   validar_persona_amigo_(idpersona, idamigo) async {
     var url = Uri.parse(
-        'http://192.168.56.1:4000/proceso/validar_amigo_persona/$idpersona/$idamigo');
+        '${Enviroment.Api_url}proceso/validar_amigo_persona/$idpersona/$idamigo');
     print(url);
 
     var response = await http.get(url);
@@ -424,7 +425,7 @@ class _OtheProfileScreenState extends State<OtheProfileScreen> {
     if (validar_persona2 == true) {
       print("eliminar");
       var url3 = Uri.parse(
-          'http://192.168.56.1:4000/amigo/delete/$id_person/$idpersonaamigo');
+          '${Enviroment.Api_url}amigo/delete/$id_person/$idpersonaamigo');
       var response3 = await http.delete(url3);
       if (response3.statusCode == 200) {
         setState(() {
@@ -443,7 +444,7 @@ class _OtheProfileScreenState extends State<OtheProfileScreen> {
           id_person.toString() +
           "idamigo : " +
           idpersonaamigo.toString());
-      var url4 = Uri.parse('http://192.168.56.1:4000/amigo/create');
+      var url4 = Uri.parse('${Enviroment.Api_url}amigo/create');
       Map data4 = {"idpersona": id_person, "idpersonaamigo": idpersonaamigo};
       var body4 = convert.json.encode(data4);
       var response4 = await http.post(url4,

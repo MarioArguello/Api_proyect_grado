@@ -1,15 +1,13 @@
 import 'package:socialui/login/ForgotPasswordScreen.dart';
-import 'package:socialui/main.dart';
 import 'package:socialui/widget/CustomeButton.dart';
 import 'package:flutter/material.dart';
-import 'package:socialui/login/RegistrationScreen.dart';
 import 'dart:convert' as convert;
-import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:socialui/Home/CustomeUi.dart';
 import 'package:socialui/login/correo/correo_verificar.dart';
+import 'package:socialui/enviorement/enviroment.dart';
 
 var user;
 var passw;
@@ -222,7 +220,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void togglePasswordVisibility() => setState(() => isHidden = !isHidden);
   login_api(user, passw) async {
-    var url = Uri.parse('http://192.168.56.1:4000/proceso/login/$user/$passw');
+    var url = Uri.parse('${Enviroment.Api_url}proceso/login/$user/$passw');
     print(url);
     // Await the http get response, then decode the json-formatted response.
     var response = await http.get(url);
