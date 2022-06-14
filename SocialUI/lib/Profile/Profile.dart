@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:socialui/Profile/crear_tweet.dart';
+import 'package:socialui/enviorement/enviroment.dart';
 
 class ProfileScreen extends StatefulWidget {
   final AnimationController animationController;
@@ -39,8 +40,8 @@ class _ProfileScreenState extends State<ProfileScreen>
   late String telefono = "";
 
   Future<String> persona_perfil(persona_user) async {
-    var url = Uri.parse(
-        'http://192.168.56.1:4000/proceso/persona_perfil/$persona_user');
+    var url =
+        Uri.parse('${Enviroment.Api_url}proceso/persona_perfil/$persona_user');
     var response = await http.get(url, headers: {"Accept": "application/json"});
     print(response);
     this.setState(() {

@@ -5,6 +5,7 @@ import 'dart:convert' as convert;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:socialui/enviorement/enviroment.dart';
 
 class CommentScreen extends StatefulWidget {
   const CommentScreen({Key? key, required this.idTweet, required this.idperson})
@@ -19,7 +20,7 @@ class _CommentScreenState extends State<CommentScreen> {
   Future<List<TweetComentario>> getDataComentaioTweet(idTweet) async {
     http.Response response = await http.get(
         Uri.parse(
-            'http://192.168.56.1:4000/proceso/Comentario_tweet/$idTweet'), //url
+            '${Enviroment.Api_url}proceso/Comentario_tweet/$idTweet'), //url
         headers: {"Accept": "application/json"});
     return await Future.delayed(Duration(seconds: 2), () {
       List<dynamic> data = convert.jsonDecode(response.body);
@@ -331,7 +332,7 @@ class _CommentScreenState extends State<CommentScreen> {
   }
 
   crear_Comentario(id_person_, idtweet, contenido) async {
-    var url4 = Uri.parse('http://192.168.56.1:4000/comentario/create');
+    var url4 = Uri.parse('${Enviroment.Api_url}comentario/create');
     Map data4 = {
       "idpersona": id_person_,
       "idtweet": idtweet,

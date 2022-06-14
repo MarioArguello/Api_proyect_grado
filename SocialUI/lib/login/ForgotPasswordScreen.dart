@@ -7,6 +7,7 @@ import 'package:socialui/login/actualizarcontrasena.dart';
 import 'package:random_string/random_string.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
+import 'package:socialui/enviorement/enviroment.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   final String? codigo_persona;
@@ -157,8 +158,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   }
 
   validarcorreo_api(correo, codigo_) async {
-    var url = Uri.parse(
-        'http://192.168.56.1:4000/proceso/validarPersonaCorreo/$correo');
+    var url =
+        Uri.parse('${Enviroment.Api_url}proceso/validarPersonaCorreo/$correo');
     print(url);
     // Await the http get response, then decode the json-formatted response.
     var response = await http.get(url);

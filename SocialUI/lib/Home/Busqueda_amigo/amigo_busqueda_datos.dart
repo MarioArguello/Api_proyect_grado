@@ -1,4 +1,3 @@
-import 'package:socialui/Home/Comment.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:like_button/like_button.dart';
@@ -6,9 +5,8 @@ import 'package:shimmer/shimmer.dart';
 import 'package:socialui/Home/TweetSerializer/serializacionPerfil.dart';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:socialui/Profile/otherProfileScreen.dart';
+import 'package:socialui/enviorement/enviroment.dart';
 
 class amigos_busqueda_datosScreen extends StatefulWidget {
   const amigos_busqueda_datosScreen(
@@ -34,7 +32,7 @@ class _amigos_busqueda_datosScreen extends State<amigos_busqueda_datosScreen> {
 
     http.Response response = await http.get(
         Uri.parse(
-            'http://192.168.56.1:4000/proceso/busqueda_nombre/$nombre_person'), //url
+            '${Enviroment.Api_url}proceso/busqueda_nombre/$nombre_person'), //url
         headers: {"Accept": "application/json"});
     return await Future.delayed(Duration(seconds: 2), () {
       List<dynamic> data = convert.jsonDecode(response.body);
@@ -179,7 +177,7 @@ class _amigos_busqueda_datosScreen extends State<amigos_busqueda_datosScreen> {
   }
 
   crear_historial(id_person_, idpersona_busqueda) async {
-    var url4 = Uri.parse('http://192.168.56.1:4000/historialpersona/create');
+    var url4 = Uri.parse('${Enviroment.Api_url}historialpersona/create');
     Map data4 = {
       "idpersona": id_person_,
       "idpersonabusqueda": idpersona_busqueda

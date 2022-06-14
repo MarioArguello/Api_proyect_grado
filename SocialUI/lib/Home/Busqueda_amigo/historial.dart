@@ -6,6 +6,7 @@ import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:socialui/Profile/otherProfileScreen.dart';
+import 'package:socialui/enviorement/enviroment.dart';
 
 class HistorialScreen extends StatefulWidget {
   const HistorialScreen({key, required this.idperson}) : super(key: key);
@@ -26,7 +27,7 @@ class _HistorialScreen extends State<HistorialScreen> {
     print(idusuario_.toString());
     http.Response response = await http.get(
         Uri.parse(
-            'http://192.168.56.1:4000/proceso/historialpersona/$idusuario_'), //url
+            '${Enviroment.Api_url}proceso/historialpersona/$idusuario_'), //url
         headers: {"Accept": "application/json"});
     return await Future.delayed(Duration(seconds: 2), () {
       List<dynamic> data = convert.jsonDecode(response.body);
@@ -198,7 +199,7 @@ class _HistorialScreen extends State<HistorialScreen> {
 
   historial_delete(id_person, idpersona_busqueda) async {
     var url3 = Uri.parse(
-        'http://192.168.56.1:4000/historialpersona/delete/$id_person/$idpersona_busqueda');
+        '${Enviroment.Api_url}historialpersona/delete/$id_person/$idpersona_busqueda');
     var response3 = await http.delete(url3);
     if (response3.statusCode == 200) {
       setState(() {

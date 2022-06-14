@@ -1,11 +1,11 @@
 import 'package:socialui/widget/CustomeButton.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:socialui/login/LoginScreen.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
+import 'package:socialui/enviorement/enviroment.dart';
 
 class actualizarContrasenaScreen extends StatefulWidget {
   final codigo_persona;
@@ -251,7 +251,7 @@ class _actualizarContrasenaScreen extends State<actualizarContrasenaScreen> {
   void togglePasswordVisibility() => setState(() => isHidden = !isHidden);
 
   actualizar_contrasena(contrasenaNueva, idusuario) async {
-    var url4 = Uri.parse('http://192.168.56.1:4000/usuario/update/$idusuario');
+    var url4 = Uri.parse('${Enviroment.Api_url}usuario/update/$idusuario');
     Map data4 = {
       "password": contrasenaNueva,
     };
